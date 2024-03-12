@@ -40,13 +40,16 @@ import 'element-plus/dist/index.css'
 import inbox from "./inbox/Inbox.vue"
 import todolist from "./todolist/TodoList.vue"
 import calender from "./calender/Calender.vue"
+import setting from "./setting/Setting.vue"
 
 const app = createApp(App);
 
 const routes = [
+  { path: "/", redirect: "inbox" },
   { path: "/inbox", component: inbox },
   { path: "/todolist", component: todolist },
   { path: "/calender", component: calender },
+  { path: "/setting", component: setting },
 ];
 
 const router = createRouter({
