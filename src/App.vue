@@ -50,10 +50,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import inbox from "./inbox/Inbox.vue"
-import todolist from "./todolist/TodoList.vue"
-import calender from "./calender/Calender.vue"
-
 import { Menu as IconMenu, MessageBox, Message, Setting } from '@element-plus/icons-vue'
 
 

@@ -1,13 +1,18 @@
 <template>
-  <el-card class="box-card">
-    <div>
-      123
-    </div>
-  </el-card>
+  <li class="infinite-list-item">
+    <el-card class="box-card">
+        {{ content }}
+    </el-card>
+  </li>
 </template>
 
+<script setup>
+defineProps(['content']);
+</script>
+
 <style>
-.box-card {
-  width: 300px;
+li {
+  list-style-type: none;
+  margin-bottom: 5px;
 }
 </style>
