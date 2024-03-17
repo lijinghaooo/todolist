@@ -1,12 +1,12 @@
-// import localForage from "localforage";
-
-// export var inboxStore = localForage.createInstance({
-//   name: "inbox"
-// });
-
 import Dexie from 'dexie';
 
-export const db = new Dexie('myDatabase');
-db.version(1).stores({
-  friends: '++id, name, age', // Primary key and indexed props
+export const todo_db = new Dexie('todolist');
+todo_db.version(1).stores({
+  thought: '++id, timestampms', // Primary key and indexed props
 });
+
+// try {
+//   await todo_db.thought.clear();
+// } catch (err) {
+//   console.log(`clear thought failed, err: ${err}`);
+// }
