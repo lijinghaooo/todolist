@@ -35,7 +35,7 @@ import App from './App.vue';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-import inbox from "./inbox/Inbox.vue"
+import thought from "./thought/Thought.vue"
 import todolist from "./todolist/TodoList.vue"
 import calender from "./calender/Calender.vue"
 import setting from "./setting/Setting.vue"
@@ -43,8 +43,8 @@ import setting from "./setting/Setting.vue"
 const app = createApp(App);
 
 const routes = [
-  { path: "/", redirect: "inbox" },
-  { path: "/inbox", component: inbox },
+  { path: "/", redirect: "thought" },
+  { path: "/thought", component: thought },
   { path: "/todolist", component: todolist },
   { path: "/calender", component: calender },
   { path: "/setting", component: setting },

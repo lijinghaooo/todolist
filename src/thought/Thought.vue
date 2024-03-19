@@ -2,7 +2,8 @@
   <new_thought @add-new-thought="AppendNewThought"></new_thought>
 
   <ul class="infinite-list" style="overflow:auto">
-    <card v-for="(todo, index) in todos" :key="todo.id" :content="todo.content" @remove="RemoveCard(index, todo.id)">
+    <card v-for="(todo, index) in todos" :key="todo.id" :content="todo.content"
+      :datetime="TransformTimestampToDatetime(todo.timestampms)" @remove="RemoveCard(index, todo.id)">
     </card>
   </ul>
 </template>
@@ -27,7 +28,7 @@ async function AppendNewThought(thought, successCallback, failedCallback) {
     failedCallback();
   }
 
-  todos.value.unshift({ id: id, content: thought.content });
+  todos.value.unshift(thought);
 
   successCallback();
 }
@@ -42,9 +43,14 @@ async function RemoveCard(index, id) {
   todos.value.splice(index, 1);
 }
 
+function TransformTimestampToDatetime(timestampms) {
+  let d = new Date(timestampms);
+  return d.toLocaleString();
+}
+
 // 初始化获取数据
 todo_db.thought.orderBy('id').reverse().each(function (thought) {
-  todos.value.push({ id: thought.id, content: thought.content });
+  todos.value.push(thought);
 }).catch(err => {
   console.error(err);
 })

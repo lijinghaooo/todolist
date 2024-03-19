@@ -4,31 +4,31 @@
       <el-aside width="200px">
         <el-scrollbar>
           <el-menu :router="true">
-            <el-menu-item index="/inbox">
+            <el-menu-item index="/thought">
               <template #title>
                 <el-icon>
-                  <MessageBox />
-                </el-icon>Inbox
+                  <Memo />
+                </el-icon>想法
               </template>
             </el-menu-item>
             <el-menu-item index="/todolist">
               <template #title>
                 <el-icon>
-                  <message />
+                  <Files />
                 </el-icon>ToDoList
               </template>
             </el-menu-item>
             <el-menu-item index="/calender">
               <template #title>
                 <el-icon>
-                  <message />
+                  <Calendar />
                 </el-icon>Calender
               </template>
             </el-menu-item>
             <el-menu-item index="/setting">
               <template #title>
                 <el-icon>
-                  <message />
+                  <Setting />
                 </el-icon>Setting
               </template>
             </el-menu-item>
@@ -47,14 +47,15 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import { Menu as IconMenu, MessageBox, Message, Setting } from '@element-plus/icons-vue'
+import { Memo, Files, Calendar, Setting } from '@element-plus/icons-vue'
 
 
 let cur_index = ref(1);
 </script>
 
 <style scoped>
-.common-layout, .el-container {
+.common-layout,
+.el-container {
   height: 100%;
   padding: 0px;
   margin: 0px;
@@ -86,5 +87,4 @@ let cur_index = ref(1);
   height: 100%;
   right: 20px;
 } */
-
 </style>
