@@ -7,9 +7,6 @@
           <el-row justify="end">
             <el-col :span="10">
               <div style="font-size: 16px">
-                <el-tooltip placement="top" content="转为TODO" effect="light">
-                  <DocumentAdd class="thought-icon" @click="$emit('moveToTodo')" />
-                </el-tooltip>
 
                 <el-tooltip placement="top" content="修改" effect="light">
                   <Edit class="thought-icon" />
@@ -23,7 +20,7 @@
 
                   <p style="text-align: center;">是否确认删除?</p>
                   <div style="text-align: center; margin: 0">
-                    <el-button size="small" type="primary" @click="$emit('remove')">确认</el-button>
+                    <el-button size="small" type="primary" @click="deletePopoverVisible = false">确认</el-button>
 
                     <el-button size="small" @click="deletePopoverVisible = false">取消</el-button>
                   </div>
@@ -35,12 +32,8 @@
 
         <el-main class="thought-card-main">
           <div>
+            <input type="checkbox">
             {{ content }}
-          </div>
-          <div style="text-align: right;">
-            <el-text size="small" style="color: #C0C0C0">
-              {{ datetime }}
-            </el-text>
           </div>
         </el-main>
 
@@ -53,43 +46,12 @@
 
 import { ref } from 'vue'
 
+import { Edit, Delete } from '@element-plus/icons-vue'
+
 defineProps({
   content: String,
-  datetime: String,
 });
-defineEmits(['remove', 'moveToTodo']);
-
-import { Edit, Delete, DocumentAdd } from '@element-plus/icons-vue'
 
 const deletePopoverVisible = ref(false);
 
 </script>
-
-<style>
-
-li {
-  list-style-type: none;
-  margin-bottom: 10px;
-}
-
-.thought-icon {
-  width: 1em;
-  height: 1em;
-  margin-right: 8px;
-}
-
-.thought-card-item {
-  padding: 0px;
-}
-
-.thought-card-header {
-  text-align: right;
-  height: 100%;
-  padding: 10px 20px 0 20px;
-}
-
-.thought-card-main {
-  padding-top: 10px;
-}
-
-</style>

@@ -37,7 +37,13 @@
       </el-aside>
 
       <el-main>
-        <router-view></router-view>
+        <router-view v-slot="{ Component }">
+          <transition>
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </transition>
+        </router-view>
       </el-main>
 
     </el-container>
@@ -45,12 +51,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 
 import { Memo, Files, Calendar, Setting } from '@element-plus/icons-vue'
 
-
-let cur_index = ref(1);
 </script>
 
 <style scoped>
@@ -60,31 +63,4 @@ let cur_index = ref(1);
   padding: 0px;
   margin: 0px;
 }
-
-/* .layout-container-demo .el-header {
-  position: relative;
-  background-color: var(--el-color-primary-light-7);
-  color: var(--el-text-color-primary);
-}
-
-.layout-container-demo .el-aside {
-  color: var(--el-text-color-primary);
-  background: var(--el-color-primary-light-8);
-}
-
-.layout-container-demo .el-menu {
-  border-right: none;
-}
-
-.layout-container-demo .el-main {
-  padding: 0;
-}
-
-.layout-container-demo .toolbar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  right: 20px;
-} */
 </style>

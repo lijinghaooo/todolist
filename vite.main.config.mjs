@@ -8,4 +8,10 @@ export default defineConfig({
     conditions: ['node'],
     mainFields: ['module', 'jsnext:main', 'jsnext'],
   },
+  server: {
+    port: 3000,
+  },
+  preview: {
+    port: 3001,
+  }
 });

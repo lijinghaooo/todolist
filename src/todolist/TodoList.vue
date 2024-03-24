@@ -1,81 +1,29 @@
 <template>
-  <el-tree
-    :data="data"
-    :props="defaultProps"
-    accordion
-    @node-click="handleNodeClick"
-  />
+  <ul class="infinite-list" style="overflow:auto">
+    <card v-for="(todo, index) in TodoLists.todo" :key="todo.id" :content="todo.content"
+      :datetime="TransformTimestampToDatetime(todo.timestampms)">
+    </card>
+  </ul>
 </template>
 
-<script lang="ts" setup>
-interface Tree {
-  label: string
-  children?: Tree[]
-}
+<script setup>
 
-const handleNodeClick = (data: Tree) => {
-  console.log(data)
-}
+import { ref } from 'vue';
+import card from './TodoCard.vue'
 
-const data: Tree[] = [
-  {
-    label: 'Level one 1',
-    children: [
-      {
-        label: 'Level two 1-1',
-        children: [
-          {
-            label: 'Level three 1-1-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Level one 2',
-    children: [
-      {
-        label: 'Level two 2-1',
-        children: [
-          {
-            label: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        label: 'Level two 2-2',
-        children: [
-          {
-            label: 'Level three 2-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Level one 3',
-    children: [
-      {
-        label: 'Level two 3-1',
-        children: [
-          {
-            label: 'Level three 3-1-1',
-          },
-        ],
-      },
-      {
-        label: 'Level two 3-2',
-        children: [
-          {
-            label: 'Level three 3-2-1',
-          },
-        ],
-      },
-    ],
-  },
-]
-const defaultProps = {
-  children: 'children',
-  label: 'label',
-}
+import { TransformTimestampToDatetime } from '../utils/TimeUtils';
+import { todo_db } from '../dbs/db.js';
+
+import { TodoLists } from './TodoLists.js'
+
+function Init() {  // 初始化获取数据
+  todo_db.todo.orderBy('id').reverse().each(function (todo) {
+    TodoLists.todo.push(todo);
+  }).catch(err => {
+    console.error(err);
+  })
+};
+
+Init();
+
 </script>
